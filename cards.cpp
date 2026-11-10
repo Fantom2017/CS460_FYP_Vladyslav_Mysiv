@@ -26,7 +26,21 @@ bool trick(int seed, vector<int> deck_cur){
 
 int main(int argc, char* argv[]){
     int res = 0;
-    vector<int> deck_select (deck_long_jumps);
+    vector<int> deck_select;
+    // 0 for deck, 1 for deck_extended, 2 for deck_long_jumps
+    if (argc == 1) {
+        return 1;
+    }
+    if (argv[1][0] == '0'){
+        deck_select = deck;
+    } else if (argv[1][0] == '1'){
+        deck_select = deck_extended;
+    } else if (argv[1][0] == '2'){
+        deck_select = deck_long_jumps;
+    } else {
+        cout << "Param need to be 0, 1 or 2";
+        return 0;
+    }
     for (int i = 0; i < 1e6; i++){
         res += trick(i, deck_select);
     }
